@@ -1,6 +1,8 @@
+import NewNote from "@/pages/note/newNote";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import NavProfile from "./navProfile";
 
 export default function Navbar() {
   const { data: session } = useSession();;
@@ -10,7 +12,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand ps-2 pt-0 pb-0 fw-bold fs-3">
-            <i className="bi bi-incognito"/> Auth System 
+            <i className="bi bi-journals"/> My Notes
           </a>
           <button className="navbar-toggler collapsed" type="button" 
             data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" 
@@ -23,11 +25,11 @@ export default function Navbar() {
             {
             session ? 
               <ul className="navbar-nav ms-auto fw-light">
-                <li className="nav-item ms-2 me-2 text-center mt-2">
-                  <button className="btn btn-dark btn-sm rounded-5 fw-light mb-2" onClick={() => signOut()}>
-                    <i className="bi bi-box-arrow-left" /> Logout
-                  </button>
+                <li className="nav-item ms-3 me-3 pt-1 text-center mt-2" 
+                data-bs-toggle="modal" data-bs-target="#exampleModalNewNote">
+                  <i className="bi bi-pencil-square"/> Write Note
                 </li>
+                <NavProfile />
               </ul>
               : 
               <ul className="navbar-nav ms-auto fw-light">
@@ -43,6 +45,9 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+
+      {/* add new note */}
+      <NewNote />
     </div>
   );
 };

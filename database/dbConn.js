@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export default async function mongodbConnect() {
   try {
     // Connect to the MongoDB 
-    await mongoose.connect('mongodb://127.0.0.1:27017/nextjsAuthSystem', { 
+    await mongoose.connect('mongodb://127.0.0.1:27017/nextjsAuthNoteApp', { 
       useNewUrlParser: true,
       useUnifiedTopology: true,
       })
