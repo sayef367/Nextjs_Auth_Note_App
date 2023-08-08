@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function NewNote() {
+  const { data: session } = useSession();
   const [noteObj, setNoteObj] = useState({
     title: '',
     content: '',
@@ -9,7 +11,11 @@ export default function NewNote() {
 
   //note data send the server
   const handleSubmit = async () => {
-    await axios.post('/api/note/post', noteObj)
+    const noteData = {
+      ...noteObj,
+      user: session.user.sub
+    };
+    await axios.post('/api/note/post', noteData)
     .then((res) => {
       alert(res.data.message);
     })

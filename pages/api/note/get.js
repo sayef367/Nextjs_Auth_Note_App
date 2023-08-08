@@ -7,12 +7,13 @@ export default async function handler(req, res) {
   };
 
   try {
-    mongodbConnect();
-    const resData = await Notes.find().sort({date: 'desc'});
+    const userId = req.query;
+    await mongodbConnect();
+    const resData = await Notes.find( userId, {title: 1, content: 1}).sort({date: 'desc'});
     
     res.status(200).json(resData);
 
   } catch (error) {
-    res.status(500).json({error: 'internal error GET page!'});
+    res.status(500).json({error: 'Internal Error...'});
   };
 };

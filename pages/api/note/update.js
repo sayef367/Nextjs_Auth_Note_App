@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   try {
     const {id} = req.query;
     const {title, content} = req.body;
-    mongodbConnect();
+    await mongodbConnect();
     await Notes.findByIdAndUpdate(id, {title, content});
     res.status(200).json({ message: 'Note is successfully update.'});
 

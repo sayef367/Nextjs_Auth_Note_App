@@ -24,8 +24,8 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             {
             session ? 
-              <ul className="navbar-nav ms-auto fw-light">
-                <li className="nav-item ms-3 me-3 pt-1 text-center mt-2" 
+              <ul className="navbar-nav ms-auto text-center fw-light">
+                <li className="nav-item link-secondary ms-2 me-3 pt-1 mt-2" 
                 data-bs-toggle="modal" data-bs-target="#exampleModalNewNote">
                   <i className="bi bi-pencil-square"/> Write Note
                 </li>

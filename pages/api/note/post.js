@@ -7,13 +7,17 @@ export default async function handler(req, res) {
   };
 
   try {
-    const { title, content } = req.body;
-    mongodbConnect();
-    let newNote = new Notes({ title, content });
+    const { title, content, user } = req.body;
+    
+    await mongodbConnect();
+    let newNote = new Notes({ title, content, user });
     await newNote.save();
     res.status(200).json({ message: 'Note is successfully added.' });
 
   } catch (error) {
-    res.status(500).json({error: 'internal error POST page!'});
+    res.status(500).json({error: 'Internal Error...'});
+
+  } finally {
+    if (mongodbConnect) res.status(200).end();
   };
 };

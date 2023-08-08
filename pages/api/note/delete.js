@@ -8,8 +8,8 @@ export default async function handler(req, res) {
 
   try {
     const {id} = req.query;
-    mongodbConnect();
-    await Notes.deleteOne({ _id: id });
+    await mongodbConnect();
+    await Notes.deleteOne({_id: id});
     res.status(200).json({ message: 'Note is successfully deleted.' });
 
   } catch (error) {

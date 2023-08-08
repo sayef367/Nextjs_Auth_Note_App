@@ -6,7 +6,7 @@ import ViewModel from "./note/viewModel";
 import DeleteModel from "./note/deleteModel";
 import Loading from "../components/loading";
 
-export default function Notes() {
+export default function Notes({ user }) {
   const [title, setTitle] = useState('');  
   const [content, setContent] = useState('');
   const [noteId, setNoteId] = useState('');
@@ -20,11 +20,12 @@ export default function Notes() {
   useEffect(() => {
     const getNotes = async () => {
       setApi(false);
-      await axios.get('/api/note/get').then(function (res) {
+      await axios.get('/api/note/get', {
+        params: { user } //props data
+      }).then(function (res) {
         setFetchData(res.data);
         setEmpty(res.data.length == 0);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if(error.response.data.error === undefined){
           alert('Internal error!');
         } else {
@@ -166,14 +167,10 @@ export async function getServerSideProps({req}) {
       }
     };
   };
-  // const data = {
-  //   name: session.user.name,
-  //   email: session.user.email
-  // }
   return {
     props: {
       session,
-      // user: data
+      user: session.user.sub
     }
   };
 };

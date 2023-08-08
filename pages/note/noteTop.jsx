@@ -5,7 +5,7 @@ export default function NoteTop(props) {
         <form>
           <input 
             onChange={props.handleFilter}
-            className="form-control form-control-lg text-center me-2 border border-dark " 
+            className="form-control form-control-lg fw-light text-center me-2 border border-dark " 
             type="search" 
             placeholder="Search note title" />
         </form>
