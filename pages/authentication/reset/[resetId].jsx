@@ -1,10 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
-export default function Forgot({ passID }) {
-  const { data: session } = useSession();
+export default function Reset({ user }) {
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
   const [cPassword, setCpassword] = useState('');
@@ -17,14 +16,13 @@ export default function Forgot({ passID }) {
     setLoading(false);
     if(password === cPassword) {
       const passRegisterData = {
-        id: passID,
+        id: user,
         password: password
       };
       await axios.put('/api/auth/forgot/password', passRegisterData)
       .then((res) => {
         alert(res.data.message);
-        if(!session) return router.push('/authentication');
-        if(session) return router.push('/');
+        router.push('/');
       }).catch((error) => {
         alert(error.response.data.error);
       });
@@ -49,6 +47,7 @@ export default function Forgot({ passID }) {
               onChange={(e) => setPassword(e.target.value)}
               className="form-control" 
               placeholder="******"
+              minLength={8}
             />
           </div>
           <div className="mb-3 mt-4">
@@ -57,6 +56,7 @@ export default function Forgot({ passID }) {
               onChange={(e) => setCpassword(e.target.value)}
               className="form-control" 
               placeholder="******"
+              minLength={8}
             />
           </div>
           <div className="d-grid gap-2 mt-4">
@@ -80,22 +80,20 @@ export default function Forgot({ passID }) {
   );
 };
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { passId } = params;
-  const url1 = passId.slice(0, 45);
-  const url2 = passId.slice(45);
-  if(url1 != process.env.URL_SECRET){
+export async function getServerSideProps({req}) {
+  const session = await getSession({ req });
+  if(!session) {
     return {
       redirect: {
         destination: '/authentication',
         permeanent: false
       }
     };
-  } 
+  };
   return {
     props: {
-      passID: url2
+      session,
+      user: session.user.sub
     }
   };
 };
