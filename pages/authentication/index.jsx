@@ -71,6 +71,9 @@ export default function AuthPage() {
                   {`${show ? "Hide password" : "Show password"}`}
                 </label>
               </div>
+              <div className="col-6 text-end fw-light">
+                <Link href='/authentication/forgot' className="text-dark">Forgot password</Link>
+              </div>
             </div>
             <div className="d-grid gap-2 mt-4">
               {
