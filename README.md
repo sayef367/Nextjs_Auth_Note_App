@@ -1,12 +1,65 @@
-Highly recommended use chrome browser
+This is a responsive nextJs-auth-system CRUD notes web app. Build an email and password authentication system with NextAuth.js and MongoDB.
 
+This web app using dependencies are:
+```bash
+"axios": "^1.4.0",
+"bootstrap": "^5.3.1",
+"bootstrap-icons": "^1.10.5",
+"mongoose": "^7.4.2",
+"bcryptjs": "^2.4.3",
+"next-auth": "^4.22.4",
+"nodemailer": "^6.9.4",
+```
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Application functionality are:
+- Create new note
+- Update note
+- Delete note
+- Search note
+- LogIn
+- SignUp
+- Forgot password
+- Change password
+- Save hash password
+- Send Email OTP
+- OTP verification time set 80 seconds
+- Google and GitHub SignIn
+- User wise data show
+- Cookies, Session Storage, Local Storage set the NextAuth
+- Backend server using NextJs API Routes
+- Loading indicator
+- responsive large, laptop, tablet, mobile screen.
 
 ## Getting Started
+Highly recommended use chrome browser.
 
-First, run the development server:
+1. Save all this .env file:
+```bash
+# add your google account_id and google_secret
+GOOGLE_ID= 
+GOOGLE_SECRET= 
+# add your github account_id and github_secret
+GITHUB_ID=
+GITHUB_SECRET=
+# add your gmail id or account App passwords generate
+EMAIL=
+EMAIL_PASS=
+# mongodb link
+MONGO_LOCAL=mongodb://127.0.0.1:27017/nextjsAuthNoteApp
+# local url
+NEXTAUTH_URL=http://localhost:3000
+#Generate Random Passwords via Command Line type cmd= openssl rand -base64 32
+AUTH_SECRET=
+```
 
+2. First download the code and run:
+```bash
+npm install
+```
+
+3. Start mongodb server.
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
@@ -17,25 +70,8 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## NextJs-Auth-Note-App view
+![](public/Screenshot1.png)
+![](public/Screenshot2.png)
+![](public/Screenshot3.png)
+![](public/Screenshot4.png)
